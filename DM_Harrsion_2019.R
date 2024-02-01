@@ -61,7 +61,7 @@ fitstan_HMC <- sampling(DM,
                                         thin = 2,
                                         algorithm = "NUTS",
                                         cores = 1,
-                                        pars <- "pi",
+                                        pars <- c("pi", "theta", "p"),
                                         verbose = T)
 hmcTime <- c(proc.time() - ptm)[3]
 
@@ -89,4 +89,9 @@ calc_certain_diffs <- function(mcmc_of_diffs, dimension){
 diffs_HMC <- est.pi$pi[,1,] - est.pi$pi[,2,]
 outHMC <- calc_certain_diffs(diffs_HMC,2)
 outHMC
+plot(extract(fitstan_HMC)$pi[,1,], xlim=c(0,0.1), ylim=c(0,0.1))
+points(extract(fitstan_HMC)$pi[,2,], col='red')
+
+plot(extract(fitstan_HMC)$theta[,1])
+points(extract(fitstan_HMC)$theta[,2], col='red')
 

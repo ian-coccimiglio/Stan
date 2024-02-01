@@ -17,11 +17,11 @@ overZero <- dat %>% subset(dat > 0)
 hist(overZero)
 K = length(dat)
 new_dat <- dat+1
-repl_unif = rep(1000, 43)
+repl_unif = rep(1, 43)
 fit1 <- stan("speciesRichness.stan",
              data = list(pop=as.vector(dat),
                          K=K,
-                         alpha=as.vector(repl_unif)),
+                         alpha=as.vector(prob)),
              chains=2,
              warmup = 2000,
              iter = 4000,

@@ -29,6 +29,7 @@ transformed parameters {
       lp_e[1] = 0;
       lp_l[1] = 0;
       for (t in 1:T) {
+        print(D);
         lp_e[t + 1] = lp_e[t] + poisson_lpmf(D[t] | e);
         lp_l[t + 1] = lp_l[t] + poisson_lpmf(D[t] | l);
       }
